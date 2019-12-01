@@ -6,26 +6,42 @@ Rails.application.routes.draw do
       namespace :merchants do
         get '/find', to: 'filter#find'
         get '/find_all', to: 'filter#find_all'
+        get '/:id/items', to: 'items#index'
+        get '/:id/invoices', to: 'invoices#index'
+        get '/most_revenue', to: ''
+
       end
       namespace :customers do
         get '/find', to: 'filter#find'
         get '/find_all', to: 'filter#find_all'
+        get '/:id/invoices', to: 'invoices#index'
+        get '/:id/transactions', to: 'transactions#index'
       end
       namespace :items do
         get '/find', to: 'filter#find'
         get '/find_all', to: 'filter#find_all'
+        get '/:id/invoice_items', to: 'invoice_items#index'
+        get '/:id/merchant', to: 'merchants#show'
       end
       namespace :invoices do
         get '/find', to: 'filter#find'
         get '/find_all', to: 'filter#find_all'
+        get '/:id/transactions', to: 'transactions#index'
+        get '/:id/items', to: 'items#index'
+        get '/:id/invoice_items', to: 'invoice_items#index'
+        get '/:id/customer', to: 'customers#show'
+        get '/:id/merchant', to: 'merchants#show'
       end
       namespace :transactions do
         get '/find', to: 'filter#find'
         get '/find_all', to: 'filter#find_all'
+        get '/:id/invoice', to: 'invoices#show'
       end
       namespace :invoice_items do
         get '/find', to: 'filter#find'
         get '/find_all', to: 'filter#find_all'
+        get '/:id/item', to: 'items#show'
+        get '/:id/invoice', to: 'invoices#show'
       end
 
       resources :merchants, only: [:index, :show]
