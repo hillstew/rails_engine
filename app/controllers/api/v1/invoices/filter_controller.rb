@@ -7,6 +7,10 @@ class Api::V1::Invoices::FilterController < ApplicationController
     render json: InvoiceSerializer.new(Invoice.where(find_params).order(:id))
   end
 
+  def random
+    render json: Invoice.random
+  end
+
   private
     def find_params
       params.permit(:id, :status, :customer_id, :merchant_id, :created_at, :updated_at)
