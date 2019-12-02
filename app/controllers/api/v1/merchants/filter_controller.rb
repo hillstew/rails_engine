@@ -7,6 +7,10 @@ class Api::V1::Merchants::FilterController < ApplicationController
     render json: MerchantSerializer.new(Merchant.where(find_params))
   end
 
+  def random
+    render json: Merchant.random
+  end
+
   private
     def find_params
       params.permit(:id, :name, :created_at, :updated_at)
