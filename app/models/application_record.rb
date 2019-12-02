@@ -4,4 +4,8 @@ class ApplicationRecord < ActiveRecord::Base
   def convert_unit_price
     self.unit_price = self.unit_price.to_f / 100
   end
+
+  def self.random
+    order('RANDOM()').first
+  end
 end
