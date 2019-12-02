@@ -1,24 +1,90 @@
-# README
+# Welcome to Rails Engine 👋
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+> An api exposing sales related data
 
-Things you may want to cover:
+![schema](./public/schema.png)
 
-* Ruby version
+#### 1. GET `/api/v1/merchants`
 
-* System dependencies
+This endpoint will return all of the merchant records.
 
-* Configuration
+> example response to request `/api/v1/merchants`
 
-* Database creation
+```
+{
+  "data": [
+    {
+      "id": "1",
+        "type": "merchant",
+        "attributes": {
+          "name": "Mike's Awesome Store",
+        }
+    },
+    {
+      "id": "2",
+      "type": "merchant",
+      "attributes": {
+        "name": "Store of Fate",
+      }
+    },
+    {
+      "id": "3",
+      "type": "merchant",
+      "attributes": {
+        "name": "This is the limit of my creativity",
+      }
+    }
+  ]
+}
+```
 
-* Database initialization
+#### 2. GET `/api/v1/merchants/:id`
 
-* How to run the test suite
+This endpoint will return the associated record.
 
-* Services (job queues, cache servers, search engines, etc.)
+> example response to request `/api/v1/merchants/2`
 
-* Deployment instructions
+```
+{
+  "data": {
+    "id": "2",
+    "type": "merchant",
+    "attributes": {
+        "name": "Klein, Rempel and Jones",
+        "id": 2
+    }
+  }
+}
+```
 
-* ...
+#### 3. GET `/api/v1/merchants/find`
+
+This endpoint will find the record based off the query parameters.
+
+> example response to request `/api/v1/merchants/find?name=Eichmann-Turcotte`
+
+```
+{
+  "data": {
+    "id": "75",
+    "type": "merchant",
+    "attributes": {
+        "name": "Eichmann-Turcotte",
+        "id": 75
+    }
+  }
+}
+```
+
+| param      | description                          |
+| ---------- | ------------------------------------ |
+| id         | search based on the primary key      |
+| name       | search based on the name attribute   |
+| created_at | search based on created_at timestamp |
+| updated_at | search based on updated_at timestamp |
+
+## Author
+
+👤 **Hillary Stewart**
+
+- Github: [@hillstew](https://github.com/hillstew)
